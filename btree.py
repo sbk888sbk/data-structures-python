@@ -37,16 +37,52 @@ class BTree:
 		self.disp(temp.lchild)
 		print(temp.value)		
 		self.disp(temp.rchild)
+		return 
+		
+	def delete(self,root,value):
+		temp=root.lchild
+		if(value<temp.value):
+			self.delete(temp.lchild,value)
+		elif value==temp.value:
+			max=self.find(temp)
+			print("Deleted root with value : "+str(value)+"and replacing with :"+str(max.value))		
+			max.lchild=temp.lchild
+			temp=max		
+		
 
+			
+		else:
+			self.delete(temp.rchild,value)			
+		
+	
+	def find(self,root):
+		temp=root
+		print("Find temp: "+str(temp.value))
+		print("Temp->Lchild: "+str(temp.lchild.value))
+		print("Temp->Lchild->Lchild :"+str(temp.lchild.lchild.value))
+		while(temp.lchild.lchild is not None):
+			temp=temp.lchild
+		if(temp.rchild is not None):
+			k=Node(temp.rchild.value)
+			temp.rchild=None
+			return k
+		else:
+			k=Node(temp.value)
+			temp=None
+			return k
 btree=BTree()
 btree.insert(None,15)
 root=btree.root
-btree.insert(root,10)
+
 btree.insert(root,7)
 btree.insert(root,8)
-btree.insert(root,20)
-btree.insert(root,19)
-btree.insert(root,17)
-btree.insert(root,22)
+btree.insert(root,4)
+btree.insert(root,3)
+btree.insert(root,5)
+btree.insert(root,9)
+print("Displaying Elements in order: ")
+btree.disp(root)
+btree.delete(root,7)
+
 print("Displaying Elements in order: ")
 btree.disp(root)
