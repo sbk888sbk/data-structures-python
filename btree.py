@@ -40,19 +40,31 @@ class BTree:
 		return 
 		
 	def delete(self,root,value):
-		temp=root.lchild
-		if(value<temp.value):
-			self.delete(temp.lchild,value)
-		elif value==temp.value:
-			max=self.find(temp)
-			print("Deleted root with value : "+str(value)+"and replacing with :"+str(max.value))		
-			max.lchild=temp.lchild
-			temp=max		
-		
-
-			
+		if(value<(root.value)):
+			root.lchild=self.delete(root.lchild,value)
+		elif(value>(root.value)):
+			root.rchild=self.delete(root.rchild,value)
 		else:
-			self.delete(temp.rchild,value)			
+			if(root.lchild is None):
+				temp=root.rchild
+				root=None
+				return temp
+			elif(root.rchild is None):
+				temp=root.lchild
+				root=None
+				return temp
+			else:
+				temp=self.find_min(root.rchild)
+				self.delete(root.rchild,temp.value)
+				root.value=temp.value
+				root.rchild=self.delete(root.rchild,temp.value)
+				return root
+	def find_min(self,root):
+		temp=root
+		if temp.lchild is None:
+			return temp
+		else:
+			return self.find_min(temp.lchild)
 		
 	
 	def find(self,root):
