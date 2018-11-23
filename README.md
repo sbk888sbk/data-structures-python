@@ -1,9 +1,9 @@
 # data-structures-python
 This Repository Contains code for basic data structures coded in python
 
-File: btree.py
+###File: btree.py
 
-  Contains code related to Binary Search Tree
+  **_Contains code related to Binary Search Tree_**
   
   Functions Include:
   1. Insert
