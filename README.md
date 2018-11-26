@@ -8,7 +8,7 @@ This Repository Contains code for basic data structures coded in python
   Functions Include:
   1. Insert Node
   2. Delete Node
-  3. Display Tree
+  3. Display Tree - Depth First Search is used to traverse and Inorder Traversal is used to display Nodes
 
 ### File: circular_linked.py
 
